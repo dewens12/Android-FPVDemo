@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
 
@@ -11,8 +11,8 @@ android {
         }
 
         applicationId "com.dji.FPVDemo"
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -44,11 +44,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:multidex:1.0.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
-    compile ('com.dji:dji-sdk:4.8.1')
-    provided ('com.dji:dji-sdk-provided:4.8.1')
+    implementation ('com.dji:dji-sdk:4.8.1')
+    compileOnly ('com.dji:dji-sdk-provided:4.8.1')
 }
