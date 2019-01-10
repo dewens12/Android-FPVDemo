@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:mediarouter-v7:26.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e20e4c3d61c9aefe44acb20f6aa68c51/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e20e4c3d61c9aefe44acb20f6aa68c51/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/558dbd329d39428da5142732ecd0dcff/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/558dbd329d39428da5142732ecd0dcff/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
