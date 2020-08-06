@@ -6,9 +6,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
@@ -17,13 +18,16 @@ import dji.sdk.base.BaseProduct;
 import dji.sdk.camera.Camera;
 import dji.sdk.products.Aircraft;
 import dji.sdk.products.HandHeld;
-import dji.sdk.sdkmanager.DJISDKManager;
+import dji.sdk.sdkmanager.DJISDKInitEvent;
+
+import static dji.sdk.sdkmanager.DJISDKManager.SDKManagerCallback;
+import static dji.sdk.sdkmanager.DJISDKManager.getInstance;
 
 public class FPVDemoApplication extends Application{
 
     public static final String FLAG_CONNECTION_CHANGE = "fpv_tutorial_connection_change";
 
-    private DJISDKManager.SDKManagerCallback mDJISDKManagerCallback;
+    private SDKManagerCallback mDJISDKManagerCallback;
     private static BaseProduct mProduct;
     public Handler mHandler;
 
@@ -48,7 +52,7 @@ public class FPVDemoApplication extends Application{
      */
     public static synchronized BaseProduct getProductInstance() {
         if (null == mProduct) {
-            mProduct = DJISDKManager.getInstance().getProduct();
+            mProduct = getInstance().getProduct();
         }
         return mProduct;
     }
@@ -78,7 +82,7 @@ public class FPVDemoApplication extends Application{
          * When starting SDK services, an instance of interface DJISDKManager.DJISDKManagerCallback will be used to listen to
          * the SDK Registration result and the product changing.
          */
-        mDJISDKManagerCallback = new DJISDKManager.SDKManagerCallback() {
+        mDJISDKManagerCallback = new SDKManagerCallback() {
 
             //Listens to the SDK registration result
             @Override
@@ -91,7 +95,7 @@ public class FPVDemoApplication extends Application{
                             Toast.makeText(getApplicationContext(), "Register Success", Toast.LENGTH_LONG).show();
                         }
                     });
-                    DJISDKManager.getInstance().startConnectionToProduct();
+                    getInstance().startConnectionToProduct();
 
                 } else {
 
@@ -119,6 +123,12 @@ public class FPVDemoApplication extends Application{
                 notifyStatusChange();
 
             }
+
+            @Override
+            public void onProductChanged(BaseProduct baseProduct) {
+
+            }
+
             @Override
             public void onComponentChange(BaseProduct.ComponentKey componentKey, BaseComponent oldComponent,
                                           BaseComponent newComponent) {
@@ -141,13 +151,23 @@ public class FPVDemoApplication extends Application{
 
             }
 
+            @Override
+            public void onInitProcess(DJISDKInitEvent djisdkInitEvent, int i) {
+
+            }
+
+            @Override
+            public void onDatabaseDownloadProgress(long l, long l1) {
+
+            }
+
         };
         //Check the permissions before registering the application for android system 6.0 above.
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int permissionCheck2 = ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.READ_PHONE_STATE);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || (permissionCheck == 0 && permissionCheck2 == 0)) {
             //This is used to start SDK services and initiate SDK.
-            DJISDKManager.getInstance().registerApp(getApplicationContext(), mDJISDKManagerCallback);
+            getInstance().registerApp(getApplicationContext(), mDJISDKManagerCallback);
             Toast.makeText(getApplicationContext(), "registering, pls wait...", Toast.LENGTH_LONG).show();
 
         } else {
@@ -160,7 +180,7 @@ public class FPVDemoApplication extends Application{
         mHandler.postDelayed(updateRunnable, 500);
     }
 
-    private Runnable updateRunnable = new Runnable() {
+    private final Runnable updateRunnable = new Runnable() {
 
         @Override
         public void run() {
