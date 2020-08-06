@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.dji:library-anti-distortion:4.7@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eab6c7793644bec42bb73b843a7146c1/library-anti-distortion-4.7/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eab6c7793644bec42bb73b843a7146c1/library-anti-distortion-4.7/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eab6c7793644bec42bb73b843a7146c1/library-anti-distortion-4.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/677f73d89a9afb8ec6bfa8d24674fbda/jetified-library-anti-distortion-4.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/677f73d89a9afb8ec6bfa8d24674fbda/jetified-library-anti-distortion-4.7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/677f73d89a9afb8ec6bfa8d24674fbda/jetified-library-anti-distortion-4.7/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
